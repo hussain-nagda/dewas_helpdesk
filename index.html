@@ -66,18 +66,18 @@
         font-family: "Nunito Sans", sans-serif;
       }
       .main-section {
-        background-image: url("./images/main-bg.png");
+        background-image: url("./images/bg (1).png");
         background-position: center;
         background-repeat: repeat;
         background-size: 500px;
         padding: 60px 0;
-        color: white;
+        color: #aa824e;
       }
       .hero-section {
         text-align: center;
       }
       footer {
-        color: white;
+        color: #aa824e;
         padding: 40px 0;
       }
       .social-icons i {
@@ -85,15 +85,15 @@
       }
 
       .form-section label,
-      .form-section textarea,
       .form-section select {
-        color: #fff;
+        color: black;
+        font-weight: 500;
       }
       .form-control::placeholder {
         color: #333;
       }
       .text-white {
-        color: #fff;
+        color: #aa824e !important;
         text-decoration: none;
       }
       .iframe-section {
@@ -124,12 +124,26 @@
       }
 
       .form-error-message {
-        color: #fff;
+        color: #aa824e;
         font-weight: 500;
         margin-top: 1rem;
         display: none;
       }
-
+      .form-check-input:checked {
+        background-color: rgb(170, 130, 78);
+        border-color: #aa824e;
+      }
+      .form-check-input:focus {
+        border-color: #aa824e;
+        outline: 0;
+        box-shadow: 0 0 0 0.25rem rgba(170, 130, 78, 0.25);
+      }
+      .customButton {
+        width: 100%;
+        background-color: #aa824e;
+        color: #fff;
+        font-weight: 600;
+      }
       .form-error-message.visible {
         display: block;
       }
@@ -184,7 +198,7 @@
             style="max-width: 320px"
           />
           <h1 class="fw-bolder">DEWAS RELAY CENTRE HELPLINE</h1>
-          <p class="lead">Ashara Mubaraka 1447 Madras (Chennai)</p>
+          <p class="lead fw-bold">Ashara Mubaraka 1447 Madras (Chennai)</p>
           <p>
             <strong
               >(Aa Helpline Fakat wo mumineen waste che je already Registered
@@ -199,7 +213,7 @@
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-md-10">
-              <div class="">
+              <div class="card p-3 p-md-4 bg-card">
                 <div class="">
                   <form id="helplineForm" novalidate>
                     <div class="row g-3">
@@ -278,6 +292,7 @@
 
                         <div
                           class="input-group d-flex"
+                          customButton
                           style="flex-wrap: nowrap"
                         >
                           <span class="input-group-text">+91</span>
@@ -289,6 +304,7 @@
                               pattern="[0-9]{10}"
                               maxlength="10"
                               inputmode="numeric"
+                              customButton
                               required
                               style="border-radius: 0 4px 4px 0"
                             />
@@ -314,55 +330,77 @@
                       </div>
                       <div class="col-12">
                         <label class="form-label">Select your Category *</label>
+
                         <div class="form-check">
                           <input
                             class="form-check-input"
                             type="radio"
+                            customButton
                             name="Category"
+                            id="category-accommodation"
                             value="Accomodation"
                             required
                           />
-                          <label class="form-check-label">Accomodation</label>
+                          <label
+                            class="form-check-label"
+                            for="category-accommodation"
+                            >Accomodation</label
+                          >
                         </div>
+
                         <div class="form-check">
                           <input
                             class="form-check-input"
                             type="radio"
                             name="Category"
+                            customButton
+                            id="category-transportation"
                             value="Transportation"
                           />
-                          <label class="form-check-label">Transportation</label>
+                          <label
+                            class="form-check-label"
+                            for="category-transportation"
+                            >Transportation</label
+                          >
                         </div>
+
                         <div class="form-check">
                           <input
                             class="form-check-input"
                             type="radio"
                             name="Category"
+                            id="category-zone"
                             value="Information about Zone & Relay Centre"
                           />
-                          <label class="form-check-label"
+                          <label class="form-check-label" for="category-zone"
                             >Information about Zone & Relay Centre</label
                           >
                         </div>
+
                         <div class="form-check">
                           <input
                             class="form-check-input"
                             type="radio"
                             name="Category"
+                            id="category-mawaid"
                             value="Mawaid information"
                           />
-                          <label class="form-check-label"
+                          <label class="form-check-label" for="category-mawaid"
                             >Mawaid information</label
                           >
                         </div>
+
                         <div class="form-check">
                           <input
                             class="form-check-input"
                             type="radio"
                             name="Category"
+                            id="category-other"
                             value="Other"
                           />
-                          <label class="form-check-label">Other</label>
+                          <label class="form-check-label" for="category-other"
+                            >Other</label
+                          >
                         </div>
                       </div>
                       <div class="col-12">
@@ -405,7 +443,10 @@
                         </p>
                       </div>
                       <div class="col-12 text-end">
-                        <button type="submit" class="btn btn-light">
+                        <button
+                          type="submit"
+                          class="btn btn-light customButton"
+                        >
                           Submit
                         </button>
                       </div>
@@ -463,50 +504,78 @@
         .addEventListener("submit", async function (e) {
           e.preventDefault();
 
-          // const form = e.target;
-          // form.classList.add("was-submitted"); // Trigger icon styles
+          const form = e.target;
+          form.classList.add("was-submitted"); // Trigger icon styles
 
-          // const requiredFields = form.querySelectorAll(
-          //   ".form-control[required]"
-          // );
-          // let isValid = true;
+          const requiredFields = form.querySelectorAll(
+            ".form-control[required]"
+          );
+          let isValid = true;
 
-          // requiredFields.forEach((field) => {
-          //   if (!field.checkValidity()) {
-          //     isValid = false;
-          //   }
-          // });
+          requiredFields.forEach((field) => {
+            if (!field.checkValidity()) {
+              isValid = false;
+            }
+          });
 
-          // const category = form.querySelector('[name="Category"]:checked');
-          // if (!category) isValid = false;
+          const category = form.querySelector('[name="Category"]:checked');
+          if (!category) isValid = false;
 
-          // const errorMsg = document.getElementById("formErrorMessage");
-          // if (!isValid) {
-          //   errorMsg.classList.add("visible");
-          //   return;
-          // } else {
-          //   errorMsg.classList.remove("visible");
-          // }
+          const errorMsg = document.getElementById("formErrorMessage");
+          if (!isValid) {
+            errorMsg.classList.add("visible");
+            return;
+          } else {
+            errorMsg.classList.remove("visible");
+          }
 
           const formData = new FormData();
-          //       formData.append("ITS Number", document.getElementById("ITS Number")?.value);
-          // formData.append("HOF ITS Number", document.getElementById("HOF ITS Number").value);
-          // formData.append("Name", document.getElementById("Name").value);
-          // formData.append("Email", document.getElementById("Email").value);
-          // formData.append("whatsapp Number", document.getElementById("whatsapp Number").value);
-          // formData.append("Jamaat", document.getElementById("Jamaat").value);
-          // formData.append("Category", document.getElementById("Category").value);
-          // formData.append("Subject", document.getElementById("Subject").value);
-          // formData.append("Query", document.getElementById("Query").value);
-          formData.append("ITS Number", "12345678");
-          formData.append("HOF ITS Number", "87654321");
-          formData.append("Name", "Hussain Nagdawala");
-          formData.append("Email", "hussain@example.com");
-          formData.append("whatsapp Number", "9876543210");
-          formData.append("Jamaat", "Mumbai");
-          formData.append("Category", "General Inquiry");
-          formData.append("Subject", "Password Reset");
-          formData.append("Query", "I forgot my password. Please assist.");
+          formData.append(
+            "ITS Number",
+            form.querySelector('[name="ITS Number"]')?.value || ""
+          );
+          formData.append(
+            "HOF ITS Number",
+            form.querySelector('[name="HOF ITS Number"]')?.value || ""
+          );
+          formData.append(
+            "Name",
+            form.querySelector('[name="Name"]')?.value || ""
+          );
+          formData.append(
+            "Email",
+            form.querySelector('[name="Email"]')?.value || ""
+          );
+          formData.append(
+            "whatsapp Number",
+            form.querySelector('[name="whatsapp Number"]')?.value || ""
+          );
+          formData.append(
+            "Jamaat",
+            form.querySelector('[name="Jamaat"]')?.value || ""
+          );
+          formData.append(
+            "Category",
+            form.querySelector('[name="Category"]:checked')?.value || ""
+          );
+
+          formData.append(
+            "Subject",
+            form.querySelector('[name="Subject"]')?.value || ""
+          );
+          formData.append(
+            "Query",
+            form.querySelector('[name="Query"]')?.value || ""
+          );
+          // formData.append("ITS Number", "12345678");
+          // formData.append("HOF ITS Number", "87654321");
+          // formData.append("Name", "Hussain Nagdawala");
+          // formData.append("Email", "hussain@example.com");
+          // formData.append("whatsapp Number", "9876543210");
+          // formData.append("Jamaat", "Mumbai");
+          // formData.append("Category", "General Inquiry");
+          // formData.append("Subject", "Password Reset");
+          // formData.append("Query", "I forgot my password. Please assist.");
 
           try {
             const res = await fetch(
@@ -516,14 +585,13 @@
                 body: formData,
               }
             );
-              console.log('res', res)
+            console.log("res", res);
             const resultText = await res.text();
-            console.log('resultText', resultText)
-            // response.innerText = "Submitted successfully!";
-            form.reset();
           } catch (err) {
-            console.log('err', err)
-            // response.innerText = "Network error: " + err.message;
+            form.reset();
+            form.classList.remove("was-submitted"); // Reset visual validation
+            console.log("err", err);
+            alert("Form has been submitted successfully");
           }
           // const data = {};
           //       const jsonData = {
@@ -550,26 +618,6 @@
           //     data[key] = value;
           //   }
           // });
-
-          // console.log("Form Data as JSON:", data);
-
-          // Example: send to API
-          // fetch("https://script.google.com/macros/s/AKfycbyeLm-Q4QaJZNJAbtzj9pSfJass2QciwoZvY9jQehytYj7PREP-R6QJrVNbkRWQaYyg/exec", {
-          //   method: "POST",
-          //   headers: {
-          //     "Content-Type": "application/json",
-          //   },
-          //   body: JSON.stringify(data),
-          // })
-          //   .then((res) => res.json())
-          //   .then((resData) => {
-          //     console.log("API Response:", resData);
-          //     alert("Form submitted successfully!");
-          //   })
-          //   .catch((err) => {
-          //     console.error("Error submitting form:", err);
-          //     alert("Error submitting form.");
-          //   });
         });
     </script>
 
